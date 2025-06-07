@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Selector de tipo de clase -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de clase"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerClassType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:padding="8dp"
+            android:backgroundTint="@color/primary_blue"/>
+
+        <!-- Fecha -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Fecha"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_blue"
+            android:focusable="false"
+            android:hint="DD/MM/AAAA"
+            android:inputType="date"
+            android:padding="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Personas a tiempo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Personas a tiempo"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextOnTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_blue"
+            android:hint="Número"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Asistencia -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Asistencia"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/primary_blue"/>
+
+        <!-- Biblias -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Biblias"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextBibles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:backgroundTint="@color/primary_blue"/>
+
+        <!-- Capítulos leídos -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Capítulos leídos"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextChapters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:backgroundTint="@color/primary_blue"/>
+
+        <!-- Visitas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Visitas"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextVisits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/primary_blue"/>
+
+        <!-- Botón de guardado -->
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Guardar"
+            android:backgroundTint="@color/primary_blue"
+            android:textColor="@color/white"
+            android:padding="12dp"/>
+
+    </LinearLayout>
+</ScrollView>
