@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,6 +19,25 @@
             android:textColor="@color/primary_blue"
             android:textSize="35dp"
             android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textViewClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clase: -"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"  />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha: -"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"  />
+
 
         <TextView
             android:id="@+id/textResAttendance"

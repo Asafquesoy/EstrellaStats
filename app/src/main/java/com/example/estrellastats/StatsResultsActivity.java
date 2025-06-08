@@ -18,26 +18,56 @@ public class StatsResultsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("Resultados");
 
-        // Recoger filtro y valor desde Intent
-        String filtro = getIntent().getStringExtra("filter");  // "Año", "Mes" o "Día"
-        String valor = getIntent().getStringExtra("value");    // valor del filtro, ej: "2025", "2025-06", "2025-06-07"
-        String clase = getIntent().getStringExtra("class");    // clase seleccionada (ej: "Niños", "Todas", etc.)
+        // Obtener datos del intent
+        String filtro = getIntent().getStringExtra("filter");  // "Año", "Mes", "Día"
+        String valor = getIntent().getStringExtra("value");    // Valor del filtro (ej: "2025", "06", "2025-06-07")
+        String clase = getIntent().getStringExtra("class");    // Clase seleccionada
 
-        // Construir cláusula WHERE segura
-        StringBuilder whereClause = new StringBuilder("1=1"); // base para evitar error SQL
+        // Mostrar clase
+        if (clase != null) {
+            if (clase.equals("Todas")) {
+                binding.textViewClass.setText("Clase: Todas las clases");
+            } else {
+                binding.textViewClass.setText("Clase: " + clase);
+            }
+        }
+
+        // Mostrar fecha de filtro
+        if (filtro != null && valor != null) {
+            String textoFecha = "Fecha: ";
+            switch (filtro) {
+                case "Año":
+                    textoFecha += "Año " + valor;
+                    break;
+                case "Mes":
+                    String mesNombre = numeroAMesNombre(valor);
+                    textoFecha += mesNombre != null ? mesNombre + " de " + getIntent().getStringExtra("year") : "Mes " + valor;
+                    break;
+                case "Día":
+                    textoFecha += valor;
+                    break;
+            }
+            binding.textViewDate.setText(textoFecha);
+        }
+
+        // Construir cláusula WHERE
+        StringBuilder whereClause = new StringBuilder("1=1");
 
         if (filtro != null && valor != null) {
             switch (filtro) {
                 case "Año":
-                    // Fecha formato yyyy-MM-dd, filtramos por año con LIKE '2025%'
                     whereClause.append(" AND fecha LIKE '").append(valor).append("%'");
                     break;
                 case "Mes":
-                    // Fecha formato yyyy-MM-dd, filtramos por mes con LIKE '2025-06%'
-                    whereClause.append(" AND fecha LIKE '").append(valor).append("%'");
+                    String mesNum = valor;
+                    if (mesNum.length() == 1) mesNum = "0" + mesNum;
+                    whereClause.append(" AND substr(fecha, 6, 2) = '").append(mesNum).append("'");
+                    String year = getIntent().getStringExtra("year");
+                    if (year != null) {
+                        whereClause.append(" AND substr(fecha, 1, 4) = '").append(year).append("'");
+                    }
                     break;
                 case "Día":
-                    // Fecha exacta
                     whereClause.append(" AND fecha = '").append(valor).append("'");
                     break;
             }
@@ -47,10 +77,10 @@ public class StatsResultsActivity extends AppCompatActivity {
             whereClause.append(" AND clase = '").append(clase).append("'");
         }
 
-        // Abrir BD y hacer consulta
+        // Ejecutar consulta
         SQLiteDatabase db = new StatsDatabaseHelper(this).getReadableDatabase();
         String query = "SELECT SUM(attendance), SUM(onTime), SUM(bibles), SUM(chapters), SUM(visits) " +
-                "FROM estadisticas WHERE " + whereClause.toString();
+                "FROM estadisticas WHERE " + whereClause;
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -65,11 +95,30 @@ public class StatsResultsActivity extends AppCompatActivity {
         cursor.close();
         db.close();
 
-        // Mostrar resultados en UI
+        // Mostrar resultados
         binding.textResAttendance.setText("Asistencia: " + attendance);
         binding.textResOnTime.setText("Puntualidad: " + onTime);
         binding.textResBibles.setText("Biblias: " + bibles);
         binding.textResChapters.setText("Capítulos leídos: " + chapters);
         binding.textResVisits.setText("Visitas: " + visits);
+    }
+
+    // Convertir número de mes a nombre (para mostrar)
+    private String numeroAMesNombre(String numero) {
+        switch (numero) {
+            case "01": return "Enero";
+            case "02": return "Febrero";
+            case "03": return "Marzo";
+            case "04": return "Abril";
+            case "05": return "Mayo";
+            case "06": return "Junio";
+            case "07": return "Julio";
+            case "08": return "Agosto";
+            case "09": return "Septiembre";
+            case "10": return "Octubre";
+            case "11": return "Noviembre";
+            case "12": return "Diciembre";
+            default: return null;
+        }
     }
 }

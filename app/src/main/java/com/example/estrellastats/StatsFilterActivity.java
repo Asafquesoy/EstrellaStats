@@ -2,6 +2,7 @@ package com.example.estrellastats;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -21,10 +22,10 @@ public class StatsFilterActivity extends AppCompatActivity {
     private ActivityStatsFilterBinding binding;
     private StatsDatabaseHelper dbHelper;
 
-    private String[] ranges = {"Año", "Mes", "Día"};
-    private String[] months = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
+    private final String[] ranges = {"Año", "Mes", "Día"};
+    private final String[] months = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
             "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
-    private String[] classes = {"Todas","Niños","Intermedios","Jóvenes","Nuevos creyentes","Adultos"};
+    private final String[] classes = {"Todas","Niños","Intermedios","Jóvenes","Nuevos creyentes","Adultos"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +63,10 @@ public class StatsFilterActivity extends AppCompatActivity {
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        // DatePicker para seleccionar fecha en rango Día
+        // DatePicker
         binding.editTextDate.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
             new DatePickerDialog(this, (dp, yy, mm, dd) -> {
-                // Guardamos fecha en formato yyyy-MM-dd para la BD
                 binding.editTextDate.setText(String.format("%04d-%02d-%02d", yy, mm+1, dd));
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
         });
@@ -74,43 +74,84 @@ public class StatsFilterActivity extends AppCompatActivity {
         // Botón aplicar filtro
         binding.buttonApplyFilter.setOnClickListener(v -> {
             String range = binding.spinnerRange.getSelectedItem().toString();
-            String year = binding.editTextYear.getText().toString().trim();
+            String year = binding.editTextYear.getText().toString();
             int monthIndex = binding.spinnerMonth.getSelectedItemPosition() + 1;
             String month = (monthIndex < 10 ? "0" : "") + monthIndex;
-            String date = binding.editTextDate.getText().toString().trim();
+            String date = binding.editTextDate.getText().toString();
             String clase = binding.spinnerClass.getSelectedItem().toString();
 
-            // Validar año si es necesario
-            if ((range.equals("Año") || range.equals("Mes")) && year.isEmpty()) {
-                binding.editTextYear.setError("Ingrese un año");
-                binding.editTextYear.requestFocus();
-                return;
-            }
-            if (range.equals("Día") && date.isEmpty()) {
-                binding.editTextDate.setError("Seleccione una fecha");
-                binding.editTextDate.requestFocus();
-                return;
-            }
+            // Obtener estadísticas
+            int[] results = getStats(range, year, month, date, clase);
 
-            // Construir valor de filtro para enviar a StatsResultsActivity
-            String filterValue = "";
-            switch (range) {
-                case "Año":
-                    filterValue = year;           // Ej: "2025"
-                    break;
-                case "Mes":
-                    filterValue = year + "-" + month;  // Ej: "2025-06"
-                    break;
-                case "Día":
-                    filterValue = date;           // Ej: "2025-06-07"
-                    break;
-            }
-
+            // Lanzar resultados
             Intent intent = new Intent(this, StatsResultsActivity.class);
+            intent.putExtra("attendance", results[0]);
+            intent.putExtra("onTime", results[1]);
+            intent.putExtra("bibles", results[2]);
+            intent.putExtra("chapters", results[3]);
+            intent.putExtra("visits", results[4]);
+
             intent.putExtra("filter", range);
-            intent.putExtra("value", filterValue);
+            intent.putExtra("value", range.equals("Día") ? date : (range.equals("Mes") ? month : year));
+            intent.putExtra("year", year); // importante para filtrar mes correctamente
             intent.putExtra("class", clase);
+
             startActivity(intent);
         });
+    }
+
+    private int[] getStats(String range, String year, String month, String date, String clase) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String where = "";
+        String[] args = new String[]{};
+
+        switch (range) {
+            case "Año":
+                where = "substr(fecha, 1, 4) = ?";
+                args = new String[]{year};
+                break;
+            case "Mes":
+                where = "substr(fecha, 1, 7) = ?";
+                args = new String[]{year + "-" + month};
+                break;
+            case "Día":
+                where = "fecha = ?";
+                args = new String[]{date};
+                break;
+        }
+
+        if (!clase.equals("Todas")) {
+            if (!where.isEmpty()) {
+                where += " AND clase = ?";
+                args = append(args, clase);
+            } else {
+                where = "clase = ?";
+                args = new String[]{clase};
+            }
+        }
+
+        String query = "SELECT SUM(attendance), SUM(onTime), SUM(bibles), SUM(chapters), SUM(visits) FROM estadisticas";
+        if (!where.isEmpty()) {
+            query += " WHERE " + where;
+        }
+
+        int[] result = new int[5];
+        Cursor cursor = db.rawQuery(query, args);
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < 5; i++) {
+                result[i] = cursor.isNull(i) ? 0 : cursor.getInt(i);
+            }
+        }
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+    private String[] append(String[] original, String value) {
+        String[] result = new String[original.length + 1];
+        System.arraycopy(original, 0, result, 0, original.length);
+        result[original.length] = value;
+        return result;
     }
 }
