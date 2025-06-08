@@ -37,7 +37,7 @@ public class EnterDataActivity extends AppCompatActivity {
         dbHelper = new StatsDatabaseHelper(this);
 
         // Configurar spinner de clases
-        String[] tipos = {"Niños", "Intermedios", "Jóvenes", "Nuevos creyentes", "Adultos"};
+        String[] tipos = {"Preescolares", "Escolares", "Intermedios", "Jóvenes", "Adultos", "Nuevos creyentes"};
         binding.spinnerClassType.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipos)
         );
@@ -88,7 +88,6 @@ public class EnterDataActivity extends AppCompatActivity {
             Toast.makeText(this, "Datos guardados", Toast.LENGTH_SHORT).show();
 
             // Limpiar campos después de guardar
-            binding.editTextDate.setText("");
             binding.editTextAttendance.setText("");
             binding.editTextOnTime.setText("");
             binding.editTextBibles.setText("");

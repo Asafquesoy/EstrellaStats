@@ -25,7 +25,7 @@ public class StatsFilterActivity extends AppCompatActivity {
     private final String[] ranges = {"Año", "Mes", "Día"};
     private final String[] months = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
             "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
-    private final String[] classes = {"Todas","Niños","Intermedios","Jóvenes","Nuevos creyentes","Adultos"};
+    private String[] classes = {"Todas", "Preescolares", "Escolares", "Intermedios", "Jóvenes", "Adultos", "Nuevos creyentes"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

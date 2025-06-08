@@ -26,7 +26,7 @@ public class StatsResultsActivity extends AppCompatActivity {
         // Mostrar clase
         if (clase != null) {
             if (clase.equals("Todas")) {
-                binding.textViewClass.setText("Clase: Todas las clases");
+                binding.textViewClass.setText("Clase: Todas");
             } else {
                 binding.textViewClass.setText("Clase: " + clase);
             }

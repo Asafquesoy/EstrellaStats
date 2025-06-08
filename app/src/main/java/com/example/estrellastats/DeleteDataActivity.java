@@ -18,7 +18,7 @@ public class DeleteDataActivity extends AppCompatActivity {
     private ActivityDeleteDataBinding binding;
     private StatsDatabaseHelper dbHelper;
 
-    private String[] clases = {"Niños", "Intermedios", "Jóvenes", "Nuevos creyentes", "Adultos"};
+    private String[] clases = {"Preescolares", "Escolares", "Intermedios", "Jóvenes", "Adultos", "Nuevos creyentes"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
