@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(this, EnterDataActivity.class));
         });
         binding.buttonStats.setOnClickListener(v -> {
-            startActivity(new Intent(this, StatsOptionsActivity.class));
+            startActivity(new Intent(this, StatsFilterActivity.class));
         });
     }
 }

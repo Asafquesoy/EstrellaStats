@@ -10,39 +10,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Título -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estadísticas por fecha"
+            android:text="Resultados de estadísticas"
             android:textColor="@color/primary_blue"
             android:textSize="20sp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Selector de fecha -->
-        <EditText
-            android:id="@+id/editTextQueryDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:clickable="true"
-            android:hint="Selecciona una fecha"
-            android:inputType="date"
-            android:padding="12dp"
-            android:background="?android:attr/editTextBackground"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Botón de consulta -->
-        <Button
-            android:id="@+id/buttonFetch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Obtener estadísticas"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Resultados de la consulta -->
         <TextView
-            android:id="@+id/textDateAttendance"
+            android:id="@+id/textResAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Asistencia: -"
@@ -51,16 +28,16 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/textDateOnTime"
+            android:id="@+id/textResOnTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Personas a tiempo: -"
+            android:text="Puntualidad: -"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/textDateBibles"
+            android:id="@+id/textResBibles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biblias: -"
@@ -69,7 +46,7 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/textDateChapters"
+            android:id="@+id/textResChapters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Capítulos leídos: -"
@@ -78,7 +55,7 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/textDateVisits"
+            android:id="@+id/textResVisits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visitas: -"

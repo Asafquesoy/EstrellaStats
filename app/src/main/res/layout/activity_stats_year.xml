@@ -18,24 +18,59 @@
             android:textSize="20sp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Ejemplo de sección de total acumulado -->
+        <!-- Selector de clase -->
+        <Spinner
+            android:id="@+id/spinnerClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Acumulados anuales -->
         <TextView
             android:id="@+id/textTotalAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Asistencia total: 0"
             android:textSize="16sp"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/textTotalOnTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Personas a tiempo total: 0"
+            android:text="Puntualidad total: 0"
             android:textSize="16sp"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
-        <!-- Agrega más métricas según necesites -->
+        <TextView
+            android:id="@+id/textTotalBibles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Biblias traídas: 0"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textTotalChapters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capítulos leídos: 0"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textTotalVisits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visitas hechas: 0"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
 
     </LinearLayout>
 </ScrollView>

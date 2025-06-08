@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"
             android:padding="8dp"
+            android:textColor="@color/black"
             android:backgroundTint="@color/primary_blue"/>
 
         <!-- Fecha -->

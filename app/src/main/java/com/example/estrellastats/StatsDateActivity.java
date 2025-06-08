@@ -20,20 +20,25 @@ public class StatsDateActivity extends AppCompatActivity {
         binding.editTextQueryDate.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
             new DatePickerDialog(this, (dp, yy, mm, dd) -> {
-                String formatted = String.format("%02d/%02d/%04d", dd, mm+1, yy);
-                binding.editTextQueryDate.setText(formatted);
+                binding.editTextQueryDate.setText(String.format("%02d/%02d/%04d", dd, mm+1, yy));
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
         });
 
         binding.buttonFetch.setOnClickListener(v -> {
             String date = binding.editTextQueryDate.getText().toString();
-            // Aquí debes consultar tu base de datos por esa fecha
+            // Consulta la base de datos por esa fecha y obtén valores reales
             // Ejemplo ficticio:
             int attendance = 30;
             int onTime = 26;
+            int bibles = 23;
+            int chapters = 4;
+            int visits = 2;
 
             binding.textDateAttendance.setText("Asistencia: " + attendance);
             binding.textDateOnTime.setText("Personas a tiempo: " + onTime);
+            binding.textDateBibles.setText("Biblias: " + bibles);
+            binding.textDateChapters.setText("Capítulos leídos: " + chapters);
+            binding.textDateVisits.setText("Visitas: " + visits);
         });
     }
 }
