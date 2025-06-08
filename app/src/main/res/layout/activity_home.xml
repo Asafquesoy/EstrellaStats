@@ -29,4 +29,17 @@
         android:textColor="@color/white"
         android:padding="16dp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <Button
+        android:id="@+id/buttonDeleteData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar datos"
+        android:backgroundTint="@color/primary_blue"
+        android:textColor="@color/white"
+        android:padding="16dp"/>
+
 </LinearLayout>

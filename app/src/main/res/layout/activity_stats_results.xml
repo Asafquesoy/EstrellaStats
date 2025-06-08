@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:text="Resultados de estadísticas"
             android:textColor="@color/primary_blue"
-            android:textSize="20sp"
+            android:textSize="35dp"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Asistencia: -"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puntualidad: -"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biblias: -"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Capítulos leídos: -"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visitas: -"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp" />
 

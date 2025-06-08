@@ -20,5 +20,12 @@ public class HomeActivity extends AppCompatActivity {
         binding.buttonStats.setOnClickListener(v -> {
             startActivity(new Intent(this, StatsFilterActivity.class));
         });
+
+// dentro de onCreate(), después de binding.buttonSave.setOnClickListener(...)
+        binding.buttonDeleteData.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DeleteDataActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
