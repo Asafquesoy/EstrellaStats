@@ -1,88 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:background="@color/color2"
+    android:paddingEnd="0dp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/primary_blue"
+        android:text="Estadísticas:"
+        android:textColor="@color/color2"
+        android:paddingStart="16dp"
+
+        android:textSize="35dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+
         android:orientation="vertical">
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Estadísticas"
-            android:textColor="@color/primary_blue"
-            android:textSize="35dp"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewClass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clase: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp"  />
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Fecha: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp"  />
+            <TextView
+                android:id="@+id/textViewClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Clase: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
 
-        <TextView
-            android:id="@+id/textResAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Asistencia: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/textResOnTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Puntualidad: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/textResAttendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Asistencia: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textResBibles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Biblias: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/textResOnTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Puntualidad: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textResChapters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Capítulos leídos: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/textResBibles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Biblias: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textResVisits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Visitas: -"
-            android:textSize="30sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/textResChapters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Capítulos leídos: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/textResVisits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Visitas: -"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+
+    <!-- Logo centrado al pie de pantalla -->
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logoapp2" />
+
+</LinearLayout>
+</LinearLayout>
