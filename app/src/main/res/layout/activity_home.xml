@@ -7,6 +7,17 @@
     android:background="@color/color2"
     android:padding="32dp">
 
+    <!-- Título del menú -->
+    <TextView
+        android:id="@+id/textMenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menú Principal"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_blue"
+        android:layout_marginBottom="24dp" />
+
     <Button
         android:id="@+id/buttonEnter"
         android:layout_width="match_parent"
