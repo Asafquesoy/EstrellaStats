@@ -3,6 +3,8 @@ package com.example.estrellastats;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.content.Intent;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +12,8 @@ import com.example.estrellastats.databinding.ActivityStatsResultsBinding;
 
 public class StatsResultsActivity extends AppCompatActivity {
     private ActivityStatsResultsBinding binding;
+
+    private String resumenTexto = ""; // Para almacenar el resumen a compartir
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +23,9 @@ public class StatsResultsActivity extends AppCompatActivity {
         setTitle("Resultados");
 
         // Obtener datos del intent
-        String filtro = getIntent().getStringExtra("filter");  // "Año", "Mes", "Día"
-        String valor = getIntent().getStringExtra("value");    // Valor del filtro (ej: "2025", "06", "2025-06-07")
-        String clase = getIntent().getStringExtra("class");    // Clase seleccionada
+        String filtro = getIntent().getStringExtra("filter");
+        String valor = getIntent().getStringExtra("value");
+        String clase = getIntent().getStringExtra("class");
 
         // Mostrar clase
         if (clase != null) {
@@ -33,8 +37,9 @@ public class StatsResultsActivity extends AppCompatActivity {
         }
 
         // Mostrar fecha de filtro
+        String textoFecha = "";
         if (filtro != null && valor != null) {
-            String textoFecha = "Fecha: ";
+            textoFecha = "Fecha: ";
             switch (filtro) {
                 case "Año":
                     textoFecha += "Año " + valor;
@@ -59,8 +64,7 @@ public class StatsResultsActivity extends AppCompatActivity {
                     whereClause.append(" AND fecha LIKE '").append(valor).append("%'");
                     break;
                 case "Mes":
-                    String mesNum = valor;
-                    if (mesNum.length() == 1) mesNum = "0" + mesNum;
+                    String mesNum = valor.length() == 1 ? "0" + valor : valor;
                     whereClause.append(" AND substr(fecha, 6, 2) = '").append(mesNum).append("'");
                     String year = getIntent().getStringExtra("year");
                     if (year != null) {
@@ -101,9 +105,34 @@ public class StatsResultsActivity extends AppCompatActivity {
         binding.textResBibles.setText("Biblias: " + bibles);
         binding.textResChapters.setText("Capítulos leídos: " + chapters);
         binding.textResVisits.setText("Visitas: " + visits);
+
+        // Preparar texto para compartir
+        resumenTexto =
+                binding.textViewDate.getText() + "\n" +
+                        binding.textViewClass.getText() + "\n" +
+                        "Asistencia: " + attendance + "\n" +
+                        "Puntualidad: " + onTime + "\n" +
+                        "Biblias: " + bibles + "\n" +
+                        "Capítulos leídos: " + chapters + "\n" +
+                        "Visitas: " + visits;
+
+        // Acción de compartir
+        binding.buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                compartirTexto(resumenTexto);
+            }
+        });
     }
 
-    // Convertir número de mes a nombre (para mostrar)
+    private void compartirTexto(String texto) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Estadísticas");
+        intent.putExtra(Intent.EXTRA_TEXT, texto);
+        startActivity(Intent.createChooser(intent, "Compartir vía"));
+    }
+
     private String numeroAMesNombre(String numero) {
         switch (numero) {
             case "01": return "Enero";
